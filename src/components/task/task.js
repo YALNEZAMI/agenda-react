@@ -40,9 +40,14 @@ export const Task = ({ task, deleteEvent, updatedEvent }) => {
         className="min-h-24 cursor-pointer"
         onClick={toogleIsDisplayingDetails}
       >
-        <div className="text-center underline mb-4 font-bold">{task.title}</div>
+        <div className="text-center underline mb-4 font-bold truncate">
+          {task.title}
+        </div>
         {task.date && (
-          <div className="text-sm ">{getDate() + ", " + getHour()}</div>
+          <div className="text-sm flex justify-between">
+            <p>{getDate()}</p>
+            <p>{getHour()}</p>
+          </div>
         )}
       </div>
       <div className="flex justify-between">
