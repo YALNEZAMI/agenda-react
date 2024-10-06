@@ -45,7 +45,6 @@ function App() {
     const newTasks = tasks.map((t) => t);
     newTasks.push(task);
     setTasks(newTasks);
-    console.log(newTasks);
 
     setInStorage(newTasks);
   };
