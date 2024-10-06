@@ -36,10 +36,14 @@ export const Task = ({ task, deleteEvent, updatedEvent }) => {
 
   return (
     <div className={`w-32 h-36 rounded p-2 m-2 ${task.color} ${task.opacity}`}>
-      <div className="min-h-24" onClick={toogleIsDisplayingDetails}>
+      <div
+        className="min-h-24 cursor-pointer"
+        onClick={toogleIsDisplayingDetails}
+      >
         <div className="text-center underline mb-4 font-bold">{task.title}</div>
-        {task.date && <div className=" ">{"le " + getDate()}</div>}
-        {task.date && <div className=" ">{"à " + getHour()}</div>}
+        {task.date && (
+          <div className="text-sm ">{getDate() + ", " + getHour()}</div>
+        )}
       </div>
       <div className="flex justify-between">
         <button
@@ -64,7 +68,7 @@ export const Task = ({ task, deleteEvent, updatedEvent }) => {
       )}
       {isDisplayingDetails && (
         <Details
-          Details
+          finishEvent={toogleIsDisplayingDetails}
           task={task}
           date={getDate()}
           hour={getHour()}
@@ -165,13 +169,39 @@ const UpdateForm = ({ updatedSuccess, cancelEvent, tasktoUpdate }) => {
   );
 };
 //details component
-const Details = ({ task, date, hour }) => {
+const Details = ({ task, date, hour, finishEvent }) => {
+  const finish = () => {
+    finishEvent();
+  };
   return (
-    <div className="fixed left-0 top-0 bg-white flex justify-center items-center">
-      <div>
-        <h1>{task.title}</h1>
-        <p>{task.description}</p>
-        <p>{"Le " + date + " à " + hour}</p>
+    <div className="fixed left-0 top-0 w-screen h-screen opacity-90 bg-white flex justify-center items-center">
+      <div className="bg-blue-700 p-4 rounded-md text-white">
+        <h1 className="text-center font-bold shadow-lg p-3 m-3 bg-pink-700">
+          {task.title}
+        </h1>
+        <p className="m-4">
+          <b className="mx-2 text-black bg-yellow-50 p-1 rounded">
+            Description :
+          </b>
+          {task.description !== ""
+            ? task.description
+            : " No defined description"}
+        </p>
+        <p className="m-4">
+          {" "}
+          <b className="mx-2 text-black bg-yellow-50 p-1 rounded">
+            Date and time :
+          </b>
+          {date + " " + hour}
+        </p>
+        <div className="flex justify-center">
+          <button
+            onClick={finish}
+            className="p-1 rounded bg-black text-white hover:opacity-80"
+          >
+            Finish
+          </button>
+        </div>
       </div>
     </div>
   );
