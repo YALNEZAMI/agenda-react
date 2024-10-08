@@ -31,7 +31,6 @@ const AddForm = ({ added, cancelEvent }) => {
     "bg-orange-500",
     "bg-yellow-500",
     "bg-gray-500",
-    "bg-blue-800",
     "bg-red-800",
     "bg-green-800",
     "bg-orange-800",
@@ -77,7 +76,7 @@ const AddForm = ({ added, cancelEvent }) => {
     cancelEvent();
   };
   return (
-    <div className="bg-white opacity-90 fixed top-0 left-0 w-screen h-screen z-20 flex items-center justify-center">
+    <div className="bg-gray-400 fixed top-0 left-0 w-screen h-screen z-20 flex items-center justify-center">
       <form className=" bg-blue-300 p-5 shadow-lg ">
         <h1 className="text-xl font-bold text-center m-2 mb-4 bg-gray-300 p-2 rounded shadow-lg ">
           Specify your task details !
